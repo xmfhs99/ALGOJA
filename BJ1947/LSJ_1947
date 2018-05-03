@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Gift {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		
+		int people = in.nextInt();
+		
+		int[] gift = new int[people];
+		
+		gift[0] = 0;
+		gift[1] = 1;
+		if (people >= 3) {
+			for(int i = 2; i < people; i++) {
+				gift[i] = (i*(gift[i-1] + gift[i-2]))%1000000000;
+			}
+		}
+		System.out.println(gift[people-1]);
+	}
+
+}
