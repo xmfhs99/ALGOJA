@@ -1,0 +1,17 @@
+/* --- 2018.05.03 박영준 BaekJoon 1947 선물 전달 JAVA DP 풀이--- */
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long[] s= new long[1000000];
+		int n=sc.nextInt();
+		s[1]=1;
+		for(int i=2;i<n;i++) 
+			s[i] = (i*(s[i-1]+s[i-2])) % 1000000000;
+		System.out.println(s[n-1]);
+	}
+}
+
