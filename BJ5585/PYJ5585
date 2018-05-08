@@ -1,0 +1,27 @@
+/* --- 2018.05.08 백준 5585번 거스름돈 JAVA --- */
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int sub = 1000 - n; //잔돈
+		int cnt=0; //잔돈 개수
+		int is=0; //change index
+		int change[] = {500, 100, 50, 10, 5, 1};
+		int k=0; //몫
+		
+		while(true) {
+			k = sub / change[is]; //
+			if(k>=1) {
+				cnt += k;
+				sub -= k*change[is];
+				is++;
+			}
+			else is++;
+			if(sub==0) break;
+		}
+		System.out.println(cnt);
+	}
+}
