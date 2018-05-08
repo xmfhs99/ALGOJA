@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Change {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		int price = input.nextInt();
+		int change = 1000 - price;
+		int count = 0;
+		
+		while (change != 0) {
+			if (change >= 500) {
+				change -= 500;
+				count++;
+			}
+			else if (change >= 100) {
+				change -= 100;
+				count++;
+			}
+			else if (change >= 50) {
+				change -= 50;
+				count++;
+			}
+			else if (change >= 10) {
+				change -= 10;
+				count++;
+			}
+			else if (change >= 5) {
+				change -= 5;
+				count++;
+			}
+			else if (change >= 1) {
+				change -= 1;
+				count++;
+			}
+		}
+		
+		System.out.println(count);
+	}
+}
