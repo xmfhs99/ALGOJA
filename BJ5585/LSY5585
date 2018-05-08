@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int money = 1000 - sc.nextInt();
+      int cnt = 0;
+      int[] A = {500, 100, 50, 10, 5, 1};
+      int[] B = new int[6];
+      for(int i = 0; i < 6; i++) {
+         B[i] = money / A[i];
+         money = money - B[i]*A[i];
+      }
+      for(int i = 0; i < 6; i++) {
+         cnt += B[i];
+      }
+      System.out.println(cnt);
+   }
+
+}
