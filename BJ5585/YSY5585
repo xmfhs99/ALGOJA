@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class coin {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int money, coin;
+		int cnum=0; //코딘 개수
+		int hnum=0; //100원 개수
+		int tnum =0; //10원 개수
+		
+		money = sc.nextInt();
+		coin = 1000 - money;
+		if(coin >=500) {
+			cnum += 1;
+			coin -= 500;
+		}
+		hnum = coin/100;
+		cnum += hnum;
+		coin -= (hnum*100);
+		if(coin>=50) {
+			cnum += 1;
+			coin -= 50;
+		}
+		tnum = coin/10;
+		cnum += tnum;
+		coin -= (tnum*10);
+		if(coin>=5) {
+			cnum += 1;
+			coin -= 5;
+		}
+		cnum += coin;
+		System.out.println(cnum);
+	}
+}
