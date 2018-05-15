@@ -1,0 +1,36 @@
+/* --- 2018.05.15 박영준 JAVA BaekJoon 11054 가장 긴 바이토닉 수열 코드 --- */
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int max=0;
+		int[] s = new int[n+1];
+		int[] arr = new int[n+1];
+		int[] arr2 = new int[n+1];
+		for(int i=0;i<n;i++) s[i] = sc.nextInt();
+		
+		for(int i=0;i<n;i++) {
+			int upMax=0;
+			for(int j=0;j<=i;j++) 
+				if(s[i] > s[j]) {
+					if(upMax < arr[j]) upMax = arr[j];
+				}
+			arr[i] = ++upMax;
+		}
+		for(int i=n-1;i>-1;i--) {
+			int downMax=0;
+			for(int j=n-1;j>=i;j--) 
+				if(s[i] > s[j]) {
+					if(downMax < arr2[j]) downMax = arr2[j];
+				}
+			arr2[i] = ++downMax;
+		}
+		for(int i=0;i<n;i++) 
+			if(max < arr[i] + arr2[i]) max = arr[i] + arr2[i];
+		System.out.println(max-1);
+	}
+}
