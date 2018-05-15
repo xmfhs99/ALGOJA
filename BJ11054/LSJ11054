@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Bitonic {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		int num = sc.nextInt();
+		
+		int[] A = new int[num];
+		int[] upB = new int[num];
+		int[] dowB = new int[num];
+		
+		for(int i=0; i<num; i++) {
+			A[i] = sc.nextInt();
+		}
+		
+		for (int i=0; i<num; i++) {
+			upB[i]=1;
+			for(int j=0; j<i; j++) {
+				if(A[i]>A[j] && upB[i] < upB[j] + 1) {
+					upB[i] = upB[j] + 1;
+				}
+			}
+		}
+		
+		for (int i=num-1; i>=0; i--) {
+			dowB[i] = 1;
+			for(int j=num-1; j>i; j--) {
+				if(A[i]>A[j] && dowB[i] < dowB[j] + 1) {
+					dowB[i] = dowB[j] + 1;
+				}
+			}
+		}
+		
+		int max = 0;
+		for(int i=0; i<num; i++) {
+			if(upB[i] + dowB[i] - 1 > max) max = upB[i]+dowB[i]-1;
+		}
+		
+		System.out.println(max);
+	}
+
+}
