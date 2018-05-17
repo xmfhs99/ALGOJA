@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class pizza {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int topp;
+		int d_pay;
+		int t_pay;
+		int d_guantity;
+		int t_num=1;
+		int x;
+		topp = sc.nextInt();
+		d_pay = sc.nextInt();
+		t_pay = sc.nextInt();
+		d_guantity = sc.nextInt();
+		int[] t_guantity= new int[topp];
+		int pizza_g=0;
+		double pizza_g2 =0;
+		int g_sum=0;
+		int p_sum =0;
+		int result = 0;
+		int maxresult =0;
+		for(int i =0;i < topp;i++) {
+			t_guantity[i] = sc.nextInt();
+		}
+		for(int i =0;i<topp-1;i++) {
+			for(int j =i+1;j<topp;j++) {
+				if(t_guantity[i]<t_guantity[j]) {
+					int t = t_guantity[i];
+					t_guantity[i] = t_guantity[j];
+					t_guantity[j]=t;
+					
+				}
+			}
+		}
+		for(int i =0; i<topp;i++) {
+			pizza_g = d_guantity;
+			for(x = 0;x<=i;x++) {
+				pizza_g += t_guantity[x];
+			}
+			p_sum = d_pay + x * t_pay;
+			result = pizza_g/ p_sum;
+			if(result>maxresult) {
+				maxresult = result;
+			}
+			
+		}
+		System.out.println(maxresult);
+			}
+		
+	
+	}
+
