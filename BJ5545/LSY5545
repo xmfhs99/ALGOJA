@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int dou, topping, max = 0, toppingN, douKcal, bestPizza = 0;
+		toppingN = sc.nextInt();
+		dou = sc.nextInt();
+		topping = sc.nextInt();
+		douKcal = sc.nextInt();	
+		int[] toppingKcal= new int[toppingN + 1];		
+		int[] A = new int[toppingN];
+		for(int i = 0; i < toppingN; i++) {
+			toppingKcal[i] = sc.nextInt();
+		}
+		
+		for(int j = 0; j < toppingN; j++) {
+			for(int i = 0; i < toppingN; i++) {
+				if(toppingKcal[i] > max) {
+					max = toppingKcal[i];
+				}
+			}
+			for(int i = 0; i < toppingN; i++) {
+				if(max == toppingKcal[i]) {
+					toppingKcal[i] = 0;
+				}
+			}
+			A[j] = max;
+			max = 0;
+		}
+		
+		for(int i = 0; i < toppingN; i++) {
+			if(((double)douKcal / (double)dou) < ((double)(douKcal + A[i]) / (double)(dou + topping))) {
+				douKcal += A[i];
+				dou += topping;
+			}
+		}
+		bestPizza = douKcal / dou;
+		System.out.println(bestPizza);
+	}
+}
