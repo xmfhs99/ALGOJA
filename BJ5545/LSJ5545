@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class BestPizza {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		int numOfToping = sc.nextInt();
+		int priceOfDow = sc.nextInt();
+		int priceOfToping = sc.nextInt();
+		int calOfDow = sc.nextInt();
+		int[] calOfToping = new int[numOfToping];
+		for (int i=0; i<numOfToping; i++) {
+			calOfToping[i] = sc.nextInt();
+		}
+		
+		int priceOfPizza = 0;
+		int calOfPizza = 0;
+		
+		int calPerPrice = 0;
+		int bestPizza = 0;
+		
+		for(int i=0;i<numOfToping-1;i++) {
+			for(int j=i+1; j<numOfToping; j++) {
+				if(calOfToping[i] < calOfToping[j]) {
+					int temp = calOfToping[i];
+					calOfToping[i] = calOfToping[j];
+					calOfToping[j] = temp;
+				}
+			}
+		}
+
+		int j;
+		for(int i=0; i<numOfToping; i++) {
+			calOfPizza = calOfDow;
+			for (j=0; j<=i; j++) {
+				calOfPizza += calOfToping[j];
+			}
+			priceOfPizza = priceOfDow + j * priceOfToping;
+			calPerPrice = calOfPizza / priceOfPizza;
+			if (calPerPrice > bestPizza) {
+				bestPizza = calPerPrice;
+			}
+		}
+		
+		System.out.println(bestPizza);
+	}
+
+}
