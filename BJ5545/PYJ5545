@@ -1,0 +1,35 @@
+/* --- 박영준 2018.05.17 BaekJoon 5545 JAVA --- */
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		double m = (double)c/(double)a;
+		int sum_cal = c;
+		int sum_money = a;
+		Integer[] d = new Integer[n];
+		for(int i=0;i<n;i++) d[i] = sc.nextInt();
+		Arrays.sort(d);
+		List<Integer> list = Arrays.asList(d);
+		Collections.reverse(list);
+		d = list.toArray(new Integer[list.size()]);
+		
+		for(int i=0;i<n;i++) {
+			if((double)d[i]/(double)b > m) {
+				sum_cal = sum_cal + d[i];
+				sum_money = sum_money + b;
+				m = ((double)sum_cal /(double)sum_money); 
+			}
+			else break;
+		}
+		System.out.println((int)m);
+	}
+}
