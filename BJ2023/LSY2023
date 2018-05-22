@@ -1,0 +1,58 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.math.*;
+
+public class Main {
+	public static boolean getPrime(int num) {
+		boolean isPrime = true;
+		if(num == 1) isPrime = false;
+		for (int n = 2; n < num - 1; n++) {
+			if (num % n == 0) {
+				isPrime = false;
+		        break;
+			}
+			continue;
+		}
+		return isPrime;
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n, cnt = 0, c = 0;
+		n = sc.nextInt();
+		LinkedList<Integer> link1 = new LinkedList<Integer>();
+		LinkedList<Integer> link2 = new LinkedList<Integer>();
+		
+		
+
+ 		for(int i = (int)Math.pow(10, n - 1); i < (int)Math.pow(10, n); i++) {
+ 			if(getPrime(i) == true) {
+ 				link1.add(i);
+ 			}
+/*			for(int j = 1; j < i; j++) {
+				if(i % j == 0) {
+					cnt ++;
+				}
+			}
+			if(cnt == 1) {
+				link1.add(i);
+			}
+			cnt = 0;
+			*/
+		}
+		for(int i = 0; i < link1.size(); i++) {
+			for(int j = n - 1; j > 0; j--) {
+				int t = link1.get(i) / (int)Math.pow(10, j); 
+				if(getPrime(t) == true) {
+					c += 1;
+				}
+			}
+			if(c == n - 1) {
+				link2.add(link1.get(i));
+			}
+			c = 0;
+		}
+		for(int i = 0; i < link2.size(); i++) {
+			System.out.println(link2.get(i));
+		}
+	}
+}
