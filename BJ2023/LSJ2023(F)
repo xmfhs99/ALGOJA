@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class FantasticPrime {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		
+		System.out.println((int)Math.pow(10, n-1));
+		System.out.println((int)Math.pow(10, n) - 1);
+		
+		for(int i = 2; i < 9; i++) {
+			if(checkPrime(i)) {
+				int store_num = (int)(i * Math.pow(10, n-1));
+				for(int j = n-2; j >= 0; j++) {
+					for(int k = 1; k <= 9; k++) {
+						if(!checkPrime(store_num + (int)(k*Math.pow(10, j)))) {
+							break;
+						}
+						store_num = store_num + (int)(k*Math.pow(10, j));
+					}
+				}
+			}
+		}
+	}
+	
+	private static boolean checkPrime(int num) {
+		for (int i =2; i < num; i++) {
+			if (num % i == 0) return false;
+		}
+		return true;
+	}
+}
