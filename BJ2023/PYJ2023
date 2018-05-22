@@ -1,0 +1,33 @@
+/* --- 18.05.22 박영준 BaekJoon 2023 JAVA --- */
+
+import java.util.Scanner;
+
+public class Main {
+	static int n;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		String s = "";
+		dfs(s, 0);
+	}
+	public static boolean check(int nt) {
+		if(nt==1) return false;
+		if(nt>0 && nt < 10) {
+			if(nt == 2 || nt == 3 || nt == 5 || nt == 7) return true;
+			else return false;
+		}
+		for(int i=2;i<nt/2;i++) {
+			if(nt%i == 0) return false;
+		}
+		return true;
+	}
+	public static void dfs(String s, int nt) {
+		if(n==nt && check(Integer.parseInt(s)) == true) System.out.println(s);
+		for(int i=1;i<=9;i++) {
+			if(s.length() == 0 && check((Integer.parseInt(String.valueOf(i))))) dfs(String.valueOf(i),nt+1);
+			else if(s.length() != 0 && check(Integer.parseInt(s)) == true) dfs(s+String.valueOf(i),nt+1);
+		}
+	}
+}
+
+ 
