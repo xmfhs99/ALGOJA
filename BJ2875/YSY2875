@@ -1,0 +1,24 @@
+import java.util.*;
+public class team {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int girl, man, intern;
+		girl = sc.nextInt();
+		man = sc.nextInt();
+		intern = sc.nextInt();
+		int team_num=0;
+		while(girl>=2 && man>=1) {	
+			girl -= 2;
+			man -= 1;
+			team_num++;
+		}
+		while(girl+man < intern) {
+			girl += 2;
+			man += 1;
+			team_num--;
+		}
+		System.out.println(team_num);
+	}
+
+}
