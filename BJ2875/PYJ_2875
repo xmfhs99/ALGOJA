@@ -1,0 +1,27 @@
+/* --- 18.05.24 박영준 BaekJoon 2875 JAVA ---*/
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int k = sc.nextInt();
+		int cnt=0;
+		
+		while(n-2>=0 && m-1>=0) {
+			n-=2;
+			m-=1;
+			cnt++;
+		}
+		while(n+m<k) {
+			cnt--;
+			n+=2;
+			m+=1;
+		}
+		System.out.println(cnt);
+	}
+
+}
