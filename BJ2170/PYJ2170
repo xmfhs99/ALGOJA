@@ -1,0 +1,42 @@
+/*--- 18.05.29 박영준 BaekJoon 2170 선 긋기 JAVA ---*/
+
+import java.awt.Point;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+import java.util.Comparator;
+
+public class Main {
+
+	public static void main(String[] args) {
+		PriorityQueue<Point> q = new PriorityQueue<>(new Comparator<Point>(){
+			public int compare(Point a, Point b) {
+				return Integer.compare(a.x, b.x);
+			}
+		});
+		Point p = new Point();
+		int x,y,left=-1000000000,right=-1000000000;
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int sum=0;
+		int dx,dy;
+		
+		for(int i=0;i<n;i++) {
+			x = sc.nextInt();
+			y = sc.nextInt();
+			q.add(new Point(x,y));
+		}
+		for(int i=0;i<n;i++) {
+			p=q.remove();
+			dx=p.x;
+			dy=p.y;
+			if(right >= dx) right = Math.max(right, dy);
+			else {
+				sum += right-left;
+				left = dx;
+				right = dy;
+			}
+		}
+		sum += right-left;
+		System.out.println(sum);
+	}
+}
