@@ -1,0 +1,61 @@
+// 문제 해결 실패.
+
+import java.util.*;
+
+
+public class LineDraw {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int num_line = sc.nextInt();
+		int[] start = new int[num_line];
+		int[] dest = new int[num_line];
+		int[] distance = new int[num_line];
+		int sum=0;
+		
+		for (int i=0; i < num_line; i++) {
+			start[i] = sc.nextInt();
+			dest[i] = sc.nextInt();
+		}
+		
+		for(int i=1; i<num_line; i++) {
+			for(int j=0; j<i; j++) {
+				if (start[j] > start[i]) {
+					int temp0 = start[i];
+					int temp1 = dest[i];
+					start[i] = start[j];
+					dest[i] = dest[j];
+					start[j] = temp0;
+					dest[j] = temp1;
+				}
+			}
+		}
+		
+		for(int i=0; i<num_line; i++) {
+			System.out.print(start[i] + " ");
+		}
+		System.out.println();
+		
+		for(int i=0; i<num_line; i++) {
+			System.out.print(dest[i] + " ");
+		}
+		
+		System.out.println();
+		
+		int k = 0;
+		for (int i=0; i<num_line; i++) {
+			distance[k] = dest[i] - start[i];
+			for (int j=i+1; j<num_line; j++) {
+				if (dest[i] >= start[j]) distance[k] = dest[j] - start[i];
+				else break;
+			}
+		}
+		for(k=0; k<num_line;k++) {
+			sum += distance[k];
+		}
+		System.out.println();
+		System.out.print(sum);
+	}
+
+}
