@@ -1,0 +1,66 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n, k = 0, t = 0, v = 0, result = 0;
+		n = sc.nextInt();
+		int[] A = new int[n];
+		int[] B = new int[n];
+		int[] C = new int[n];
+		for(int i = 0; i < n; i++) {
+			A[i] = sc.nextInt();
+			B[i] = sc.nextInt();
+		}
+		Arrays.sort(A);
+		for(int i = 0; i < n; i++) {
+			for(int j = i - 1; j >= 0; j--) {
+				if(A[i] < A[j]) {
+					int temp = 0, temp1 = 0;
+					temp = A[j];
+					A[j] = A[i];
+					A[i] = temp;
+					
+					temp1 = B[j];
+					B[j] = B[i];
+					B[i] = temp1;
+					
+					i--;
+				}
+				else {
+					break;
+				}
+			}
+		}
+		for(int i = 0; i < n; i++) {
+			if(i == 0) {
+				C[k] = B[i] - A[i];
+				v = A[k];
+				t = B[k];
+			}
+			else {
+				if(A[i] <= t) {
+					if(B[i] > t) {
+						t = B[i];
+						C[k] = t - v;
+					}
+				}
+				else {
+					k++;
+					C[k] = B[i] - A[i];
+					v = A[i];
+					t = B[i];
+				}
+			}
+		}
+		for(int i = 0; i < n; i++) {
+			if(C[i] != 0) {
+				result += C[i];
+			}
+		}
+		System.out.println(result);
+	}
+
+}
