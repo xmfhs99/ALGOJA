@@ -1,0 +1,41 @@
+// 이석준 Baekjoon 런타임 에러
+
+import java.util.*;
+
+public class LCS {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		String str = sc.next();
+		String str1 = sc.next();
+		
+		
+		
+		int[][] str_array = new int[str1.length()+1][str.length()+1];
+		
+		for(int i=0; i<str.length()+1; i++) {
+			str_array[0][i] = 0;
+		}
+		for (int j=1; j<str1.length()+1; j++) {
+			str_array[j][0] = 0;
+		}
+		
+		
+		for(int i=1; i<str1.length()+1; i++) {
+			for(int j=1; j<str.length()+1; j++) {
+				if (str1.charAt(i-1) != str.charAt(j-1)) {
+					if (str_array[i-1][j] > str_array[i][j-1]) {
+						str_array[i][j] = str_array[i-1][j];
+					}
+					else str_array[i][j] = str_array[i][j-1];
+				}
+				else str_array[i][j] = str_array[i-1][j-1] + 1;
+			}
+		}
+		int result = str_array[str.length()][str1.length()];
+		System.out.print(result);
+	}
+
+}
