@@ -1,0 +1,24 @@
+s1 = input()
+s2 = input()
+s3 = []
+s1_place=0
+s2_place=0
+result =0
+bo = False
+while(True):
+    s3.append(0)
+    for i in range(s1_place, len(s1)):
+        for j in range(s2_place,len(s2)):
+            if s1[i] == s2[j]:
+                bo = True
+                s3[s1_place] += 1
+                s2_place = (j+1)
+                break
+            
+    s1_place += 1
+    s2_place = 0
+    if s1_place==len(s1):
+        break
+print(s3)
+result = max(s3)
+print(result)
